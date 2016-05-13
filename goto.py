@@ -49,16 +49,17 @@ class GoTo():
         print 'NAME'
         print '\tgoTo -- change dir to a specific project path\n'
         print 'SYNOPSIS'
-        print '\tgt [-alr] <project> [path]\n'
+        print '\tgt [-ahlr] <project> [path]\n'
         print 'USAGE'
         print '\tgt <project>           \t cd to a project'
         print '\tgt -l                  \t list projects and paths'
+        print '\tgt -h                  \t print this help'
         print '\tgt -r <project>        \t remove a project'
         print '\tgt -a <project> <path> \t add a project with a path (can use . or ..)\n'
         print 'AUTHOR'
         print '\tgoTo was made by Paulo Moggi and the source can be found at:'
         print '\thttps://github.com/Moggi/goTo\n'
-        print 'goTo\t\t\t\t12/05/2016\t\t\t\tgoTo'
+        print 'goTo\t\t\t\t13/05/2016\t\t\t\tgoTo'
 
     def ls(self):
         for key, value in self._PATHS.iteritems():
@@ -72,6 +73,11 @@ class GoTo():
         return False
 
     def add(self,name,path):
+        if name[0]=='-':
+            print 'Project name can\'t initiate with \'-\''
+            print 'Doing nothing.'
+            return
+
         if self._PATHS.has_key(name):
             print 'Project name already exist.'
             print 'Doing nothing.'
@@ -82,8 +88,12 @@ class GoTo():
             if path[-1] != '/':
                 path+='/'
 
-            self._PATHS[name] = os.path.expanduser(path)
-            self._write_file()
+            if os.path.isdir(path):
+                self._PATHS[name] = os.path.expanduser(path)
+                self._write_file()
+            else:
+                print 'Invalid path.'
+                print 'Doing nothing.'
 
     def rm(self,name):
         if not self._PATHS.has_key(name):
@@ -94,10 +104,7 @@ class GoTo():
             del self._PATHS[name]
             self._write_file()
 
-
-if __name__=='__main__':
-
-    _ARGS = sys.argv
+def _main(_ARGS):
     _NARG = len(_ARGS)
 
     _CMD_  = 1
@@ -108,25 +115,34 @@ if __name__=='__main__':
 
     if _NARG <= 1:
         goTo.usage()
-        exit(1)
+        return 1
 
-    elif _NARG == 2:
-        if _ARGS[_CMD_][0] != '-':
-            if goTo.up(_ARGS[_NAME_-1]):
-                exit(0)
-        else:
-            if _ARGS[_CMD_] != '--ls' or _ARGS[_CMD_] != '-ls':
-                goTo.ls()
-
+    # gt <name>
+    if  _ARGS[_CMD_][0] != '-':
+        if goTo.up(_ARGS[_NAME_-1]):
+            return 0
     else:
-        if _ARGS[_CMD_] == '--add' or _ARGS[_CMD_] == '-a':
-            goTo.add(_ARGS[_NAME_],_ARGS[_PATH_])
+        #gt <cmd>
+        if _ARGS[_CMD_] == '--ls' or _ARGS[_CMD_] == '-l':
+            goTo.ls()
+            return 1
 
-        elif _ARGS[_CMD_] == '--rm' or _ARGS[_CMD_] == '-r':
-            goTo.rm(_ARGS[_NAME_])
-
-        else:
+        elif _ARGS[_CMD_] == '--help' or _ARGS[_CMD_] == '-h':
             goTo.usage()
+            return 1
+
+        # gt <cmd> <name>
+        elif (_ARGS[_CMD_] == '--rm' or _ARGS[_CMD_] == '-r') and _NARG>2:
+            goTo.rm(_ARGS[_NAME_])
+            return 1
+
+        # gt <cmd> <name> <path>
+        elif (_ARGS[_CMD_] == '--add' or _ARGS[_CMD_] == '-a') and _NARG>3:
+            goTo.add(_ARGS[_NAME_],_ARGS[_PATH_])
+            return 1
+
+    goTo.usage()
+    return 1
 
 
-exit(1)
+exit(_main(sys.argv))
