@@ -6,12 +6,14 @@ import json
 
 class GoTo():
     _HOMEPATH = ""
+    _GOTOHOME = ""
     _ENVPATH = ""
     _PATHS = {}
 
     def __init__(self):
         self._HOMEPATH = os.path.expanduser("~")
-        self._ENVPATH = self._HOMEPATH+'/.goTo.envs'
+        self._GOTOHOME = self._HOMEPATH+'/.goto'
+        self._ENVPATH = self._GOTOHOME+'/envs'
 
         if not self._file_exist():
             self._create_file()
@@ -59,11 +61,11 @@ class GoTo():
         print 'AUTHOR'
         print '\tgoTo was made by Paulo Moggi and the source can be found at:'
         print '\thttps://github.com/Moggi/goTo\n'
-        print 'goTo\t\t\t\t13/05/2016\t\t\t\tgoTo'
+        print 'goTo\t\t\t\t03/06/2016\t\t\t\tgoTo'
 
     def ls(self):
         for key, value in self._PATHS.iteritems():
-            print '[' + key + '] => ' + value
+            print '[' + key + ']\t=> ' + value
 
     def up(self,name):
         if self._PATHS.has_key(name):
@@ -104,6 +106,16 @@ class GoTo():
             del self._PATHS[name]
             self._write_file()
 
+    def logo(self):
+        print '              ________'
+        print '_______ _________  __/_____'
+        print '__  __ `/  __ \_  /  _  __ \\'
+        print '_  /_/ // /_/ /  /   / /_/ /'
+        print '_\__, / \____//_/    \____/'
+        print '/____/\n'
+        print 'Simple way to pre-set up a terminal environment\n'
+        print 'do `gt -h` to see the help'
+
 def _main(_ARGS):
     _NARG = len(_ARGS)
 
@@ -114,7 +126,7 @@ def _main(_ARGS):
     goTo = GoTo()
 
     if _NARG <= 1:
-        goTo.usage()
+        goTo.logo()
         return 1
 
     # gt <name>

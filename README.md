@@ -16,21 +16,34 @@ Simple way to pre-set up a terminal environment
 
 ## Quick start
 
-1. Clone the repo to a global path, like /usr/local/opt
-
-2. Source the gt.sh on ~/.bash_profile or ~/.bashrc
+1. Clone the repo and install it
  ```sh
- # source the shell script on ~/.bash_profile or ~/.bashrc
- source /usr/local/opt/goTo/gt.sh
+ git clone https://github.com/Moggi/goTo.git
+ cd goTo
+
+ chmod +x install.sh
+ ./install.sh
+ # You need to `source $HOME/.bash_profile` or just use a new Shell instance
  ```
 
-3. Do 'gt -h' to see the mini manual
+2. Do 'gt -h' to see the mini manual
  ```sh
  # do gt -h to see the help
  gt -h
- # or just gt
+ # or gt to see the 'logo'
  gt
  ```
+
+### Uninstall  
+```sh
+chmod +x uninstall.sh
+./uninstall.sh
+# You need to `unset -f gt` or just use a new Shell instance
+```
+
+### Where it runs
+- Bash
+- Zsh
 
 ## Known Issues
 - Project name with spaces
