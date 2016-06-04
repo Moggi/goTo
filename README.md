@@ -38,7 +38,6 @@ Simple way to pre-set up a terminal environment
 ```sh
 chmod +x uninstall.sh
 ./uninstall.sh
-# You need to `unset -f gt` or just use a new Shell instance
 ```
 
 ### Where it runs

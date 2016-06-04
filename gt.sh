@@ -4,10 +4,8 @@ function gt {
 
     if [ ! -d $_GOTO_HOME ] || [ ! -f ${_GOTO_HOME}/goto.py ]
     then
-        # Shell script can't unset functions
-        # Need to unset manually
-        echo 'goTo was not (un)installed properly to this instance'
-        echo 'You need to `unset -f gt` to remove it or just initiate a new SHELL instance'
+        echo 'goTo files not found. Unsetting this function'
+        unset -f gt
         return 1
     fi
 
