@@ -46,3 +46,9 @@ chmod +x uninstall.sh
 
 ## Known Issues
 - Project name with spaces
+
+## ROADMAP
+- Update input/menu
+- Remove Jsawk
+- Finally add env module
+ - Make easy to use with virtualenv (python)
