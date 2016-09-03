@@ -10,10 +10,6 @@ _\__, / \____//_/    \____/
 Simple way to pre-set up a terminal environment                                     
 ```
 
-## Requirements
-- Jsawk
-- Python 2.7
-
 ## Quick start
 
 1. Clone the repo and install it
@@ -26,10 +22,10 @@ Simple way to pre-set up a terminal environment
  # You need to `source $HOME/.bash_profile` or just use a new Shell instance
  ```
 
-2. Do 'gt -h' to see the mini manual
+2. Do 'gt help' to see the mini manual
  ```sh
  # do gt -h to see the help
- gt -h
+ gt help
  # or gt to see the 'logo'
  gt
  ```
@@ -43,6 +39,3 @@ chmod +x uninstall.sh
 ### Where it runs
 - Bash
 - Zsh
-
-## Known Issues
-- Project name with spaces

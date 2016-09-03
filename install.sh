@@ -14,15 +14,15 @@ Simple way to pre-set up a terminal environment
 
 if [ ! "`basename $SHELL`" == "bash" ]
 then
-    echo 'Looks like you have other SHELL env'
+    echo 'Looks like you have other SHELL environment'
     echo 'We are sourcing the goTo script to $HOME/.bash_profile'
     echo 'You may need to `source $HOME/.bash_profile` to your SHELL startup script'
 fi
 
-if [ -f goto.py ] && [ -f gt.sh ]
+if [ -f gt.sh ]
 then
 	mkdir -p $_GOTO_HOME
-	cp -f goto.py $_GOTO_HOME/goto.py
+    mkdir $_GOTO_HOME/envs
 	cp -f gt.sh $_GOTO_HOME/gt.sh
 
     if [ ! -f $HOME/.bash_profile ] || ! grep -q "source ${_GOTO_HOME}/gt.sh" $HOME/.bash_profile
@@ -35,5 +35,5 @@ then
     echo 'To use now, you need to source it manually'
     echo 'or just initiate a new SHELL instance'
 else
-	echo 'No GOTO files found. [goto.py and gt.sh]'
+	echo 'No GOTO files found. [gt.sh]'
 fi

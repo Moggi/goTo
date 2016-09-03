@@ -2,8 +2,10 @@
 
 _GOTO_HOME="${HOME}/.goto"
 
-rm -f $_GOTO_HOME/goto.py
-rm -f $_GOTO_HOME/gt.sh
+if [ -d $_GOTO_HOME ]
+then
+    rm -rf $_GOTO_HOME
+fi
 
 if [ -f $HOME/.bash_profile ]
 then
