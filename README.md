@@ -24,7 +24,7 @@ Simple way to pre-set up a terminal environment
 
 2. Do 'gt help' to see the mini manual
  ```sh
- # do gt -h to see the help
+ # do gt help to see the help
  gt help
  # or gt to see the 'logo'
  gt
