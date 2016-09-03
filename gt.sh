@@ -55,7 +55,7 @@ NAME
     goTo -- change dir to a specific project path
 
 USAGE
-    gt                          see the GoTo logo
+    gt                          see the goTo logo
     gt <project>                cd to a project
     gt ls                       list projects and paths
     gt help                     print this help

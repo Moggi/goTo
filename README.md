@@ -26,7 +26,7 @@ Simple way to pre-set up a terminal environment
  ```sh
  # do gt help to see the help
  gt help
- # or gt to see the 'logo'
+ # or gt to see the 'goTo logo'
  gt
  ```
 
