@@ -24,6 +24,7 @@ then
 	mkdir -p $_GOTO_HOME
     mkdir $_GOTO_HOME/envs
 	cp -f gt.sh $_GOTO_HOME/gt.sh
+    touch $_GOTO_HOME/places
 
     if [ ! -f $HOME/.bash_profile ] || ! grep -q "source ${_GOTO_HOME}/gt.sh" $HOME/.bash_profile
     then
