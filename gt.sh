@@ -27,7 +27,8 @@ function gt {
     }
 
     function __ls {
-        sed "s/:/$(echo '\t')/g" $_GOTO_PLACES
+        TAB=$'\t'
+        cat $_GOTO_PLACES | sed "s/:/${TAB}/g"
     }
 
     function __add {
