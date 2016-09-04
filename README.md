@@ -54,7 +54,7 @@ cd ~
 # and you have a POV-Ray project at $HOME/Code/povray
 gt add povray $HOME/Code/povray
 # now you can just go there with
-gt goto
+gt povray
 
 # Now let's say you need to cd to a project at /usr/local/share/projectX/
 # if you have already saved it, then
