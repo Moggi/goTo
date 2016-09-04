@@ -6,7 +6,7 @@ function gt {
     _ERROR="No such file or directory"
 
     function __cd {
-        _DIR=$(grep "$1" $_GOTO_PLACES | cut -d: -f2)
+        _DIR=$(grep -w "$1" $_GOTO_PLACES | cut -d: -f2)
         if [ $_DIR ] && [ -d $_DIR ]
         then
             cd $_DIR
@@ -28,11 +28,11 @@ function gt {
 
     function __ls {
         TAB=$'\t'
-        cat $_GOTO_PLACES | sed "s/:/${TAB}&/g"
+        cat $_GOTO_PLACES | sed "s/:/${TAB}/g"
     }
 
     function __add {
-        if [ $(grep "$1" $_GOTO_PLACES) ]
+        if [ $(grep -w "$1" $_GOTO_PLACES) ]
         then
             echo "gt rm '$1' before anything"
         else
@@ -47,7 +47,7 @@ function gt {
         then
             rm -f $_GOTO_ENVS/$1
         fi
-        echo "$(grep -v "$1" $_GOTO_PLACES)" > $_GOTO_PLACES
+        echo "$(grep -vw "$1" ${_GOTO_PLACES})" > $_GOTO_PLACES
     }
 
     function __help {

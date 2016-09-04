@@ -9,5 +9,5 @@ fi
 
 if [ -f $HOME/.bash_profile ]
 then
-    echo "$(grep -v "source ${_GOTO_HOME}/gt.sh" ${HOME}/.bash_profile)" > $HOME/.bash_profile
+    echo "$(grep -vw "source ${_GOTO_HOME}/gt.sh" ${HOME}/.bash_profile)" > $HOME/.bash_profile
 fi
