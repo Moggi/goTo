@@ -53,13 +53,14 @@ function gt {
     function __help {
 echo 'Mini "man gt"
 NAME
-    goTo -- change dir to a specific project path
+    goTo -- Simple way to pre-set up a terminal environment
 
 USAGE
     gt                          see the goTo logo
     gt <project>                cd to a project
     gt ls                       list projects and paths
     gt help                     print this help
+    gt up <project>             setup the project environment
     gt rm <project>             remove a project
     gt add <project> <path>     add a project with a path
 
@@ -67,7 +68,7 @@ AUTHOR
     goTo was made by Paulo Moggi and the source can be found at:
     https://github.com/Moggi/goTo
 
-goTo				03/09/2016				goTo'
+goTo				04/09/2016				goTo'
     }
 
     function __logo {

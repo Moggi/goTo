@@ -12,7 +12,7 @@ _\__, / \____//_/    \____/
 Simple way to pre-set up a terminal environment
 '
 
-if [ ! "`basename $SHELL`" == "bash" ]
+if [ "`basename $SHELL`" != "bash" ]
 then
     echo 'Looks like you have other SHELL environment'
     echo 'We are sourcing the goTo script to $HOME/.bash_profile'
