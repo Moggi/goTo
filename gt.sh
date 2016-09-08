@@ -41,6 +41,19 @@ function gt {
             echo "Now you can edit the environment file at $_GOTO_ENVS/$1"
         fi
     }
+	
+	
+    function __edit {
+		if [ $(grep -w "$1" $_GOTO_PLACES) ]
+        then
+			project=$1
+            echo "Editing \"$project\" project env"
+            nano "$_GOTO_ENVS/$project"
+			
+        else
+            echo $_ERROR
+        fi
+    }
 
     function __rm {
         if [ -d $_GOTO_ENVS/$1 ]
@@ -63,6 +76,7 @@ USAGE
     gt up <project>             setup the project environment
     gt rm <project>             remove a project
     gt add <project> <path>     add a project with a path
+    gt edit <project>     		edit env file for project
 
 AUTHOR
     goTo was made by Paulo Moggi and the source can be found at:
@@ -117,6 +131,10 @@ do `gt help` to see the help
         elif [ $1 = "rm" ]
         then
             __rm $2
+        
+        elif [ $1 = "edit" ]
+        then
+            __edit $2
         fi
     elif (( $# == 3 ))
     then
