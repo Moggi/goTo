@@ -4,6 +4,7 @@ function gt {
     _GOTO_ENVS="$HOME/.goto/envs"
     _GOTO_PLACES="$HOME/.goto/places"
     _ERROR="No such file or directory"
+    _GOTO_EDITOR="nano"
 
     function __cd {
         _DIR=$(grep -w "$1" $_GOTO_PLACES | cut -d: -f2)
@@ -41,15 +42,17 @@ function gt {
             echo "Now you can edit the environment file at $_GOTO_ENVS/$1"
         fi
     }
-	
-	
+
+
     function __edit {
+        if [ ! -z ${GOTO_EDITOR+x} ]
+        then
+            _GOTO_EDITOR=$GOTO_EDITOR
+        fi
 		if [ $(grep -w "$1" $_GOTO_PLACES) ]
         then
-			project=$1
-            echo "Editing \"$project\" project env"
-            nano "$_GOTO_ENVS/$project"
-			
+            echo "Editing \"$1\" project env"
+            eval "$_GOTO_EDITOR $_GOTO_ENVS/$1"
         else
             echo $_ERROR
         fi
@@ -76,13 +79,16 @@ USAGE
     gt up <project>             setup the project environment
     gt rm <project>             remove a project
     gt add <project> <path>     add a project with a path
-    gt edit <project>     		edit env file for project
+    gt edit <project>     		edit environment file for project
+
+ENVIRONMENT
+    GOTO_EDITOR May be used to specify default environment editor
 
 AUTHOR
     goTo was made by Paulo Moggi and the source can be found at:
     https://github.com/Moggi/goTo
 
-goTo				04/09/2016				goTo'
+goTo				08/09/2016				goTo'
     }
 
     function __logo {
@@ -131,7 +137,7 @@ do `gt help` to see the help
         elif [ $1 = "rm" ]
         then
             __rm $2
-        
+
         elif [ $1 = "edit" ]
         then
             __edit $2
