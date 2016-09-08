@@ -39,7 +39,6 @@ chmod +x uninstall.sh
 ### Where it runs
 - Bash
 - Zsh
-- Dash
 - Fishshell (not yet tested)
 
 ## How it works
