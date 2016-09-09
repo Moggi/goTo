@@ -33,7 +33,11 @@ function gt {
     }
 
     function __add {
-        if [ $(grep -w "$1" $_GOTO_PLACES) ]
+        if [ "$1" = "ls" ] || [ "$1" = "help" ]
+        then
+            echo "There is a command with this name"
+            echo "This project name can't be used"
+        elif [ $(grep -w "$1" $_GOTO_PLACES) ]
         then
             echo "gt rm '$1' before anything"
         else
