@@ -8,7 +8,7 @@ function gt {
 
     function __cd {
         _DIR=$(grep -w "$1" $_GOTO_PLACES | cut -d: -f2)
-        if [ $_DIR ] && [ -d $_DIR ]
+        if [ -z ${DIR+x} ] && [ -d $_DIR ]
         then
             cd $_DIR
         else
