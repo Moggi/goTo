@@ -92,7 +92,7 @@ AUTHOR
     goTo was made by Paulo Moggi and the source can be found at:
     https://github.com/Moggi/goTo
 
-goTo				08/09/2016				goTo'
+goTo                        09/2016                     goTo'
     }
 
     function __logo {
