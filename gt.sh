@@ -8,7 +8,7 @@ function gt {
 
     function __cd {
         _DIR=$(grep -w "$1" $_GOTO_PLACES | cut -d: -f2)
-        if [ $_DIR ] && [ -d $_DIR ]
+        if [ -z ${DIR+x} ] && [ -d $_DIR ]
         then
             cd $_DIR
         else
@@ -33,7 +33,11 @@ function gt {
     }
 
     function __add {
-        if [ $(grep -w "$1" $_GOTO_PLACES) ]
+        if [ "$1" = "ls" ] || [ "$1" = "help" ]
+        then
+            echo "There is a command with this name"
+            echo "This project name can't be used"
+        elif [ $(grep -w "$1" $_GOTO_PLACES) ]
         then
             echo "gt rm '$1' before anything"
         else
@@ -79,7 +83,7 @@ USAGE
     gt up <project>             setup the project environment
     gt rm <project>             remove a project
     gt add <project> <path>     add a project with a path
-    gt edit <project>     		edit environment file for project
+    gt edit <project>     	edit environment file for project
 
 ENVIRONMENT
     GOTO_EDITOR May be used to specify default environment editor

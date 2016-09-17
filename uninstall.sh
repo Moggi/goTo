@@ -7,7 +7,7 @@ then
     rm -rf $_GOTO_HOME
 fi
 
-if [ -f $HOME/.bash_profile ]
+if [ -f $HOME/.bashrc ]
 then
-    echo "$(grep -vw "source ${_GOTO_HOME}/gt.sh" ${HOME}/.bash_profile)" > $HOME/.bash_profile
+    echo "$(grep -vw "source ${_GOTO_HOME}/gt.sh" ${HOME}/.bashrc)" > $HOME/.bashrc
 fi
