@@ -83,7 +83,7 @@ USAGE
     gt up <project>             setup the project environment
     gt rm <project>             remove a project
     gt add <project> <path>     add a project with a path
-    gt edit <project>     		edit environment file for project
+    gt edit <project>     	edit environment file for project
 
 ENVIRONMENT
     GOTO_EDITOR May be used to specify default environment editor
