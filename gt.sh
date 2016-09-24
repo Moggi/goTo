@@ -94,11 +94,7 @@ AUTHOR
     goTo was made by Paulo Moggi and the source can be found at:
     https://github.com/Moggi/goTo
 
-<<<<<<< HEAD
-goTo                        09/2016                     goTo'
-=======
 goTo                            09/2016                         goTo'
->>>>>>> dev
     }
 
     function __logo {
