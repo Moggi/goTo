@@ -7,8 +7,8 @@ function gt {
     _GOTO_EDITOR="nano"
 
     function __cd {
-        _DIR=$(grep -w "$1" $_GOTO_PLACES | cut -d: -f2)
-        if [ -z ${DIR+x} ] && [ -d $_DIR ]
+        _DIR=$(grep -w "$1:" $_GOTO_PLACES | cut -d: -f2)
+        if [[ $_DIR ]] && [ -d $_DIR ]
         then
             cd $_DIR
         else
@@ -33,11 +33,12 @@ function gt {
     }
 
     function __add {
+        _PROJECT=$(grep -w "$1:" $_GOTO_PLACES | cut -d: -f1)
         if [ "$1" = "ls" ] || [ "$1" = "help" ]
         then
             echo "There is a command with this name"
             echo "This project name can't be used"
-        elif [ $(grep -w "$1" $_GOTO_PLACES) ]
+        elif [[ $_PROJECT ]]
         then
             echo "gt rm '$1' before anything"
         else
@@ -47,13 +48,12 @@ function gt {
         fi
     }
 
-
     function __edit {
         if [ ! -z ${GOTO_EDITOR+x} ]
         then
             _GOTO_EDITOR=$GOTO_EDITOR
         fi
-		if [ $(grep -w "$1" $_GOTO_PLACES) ]
+		if [ $(grep -w "$1:" $_GOTO_PLACES) ]
         then
             echo "Editing \"$1\" project env"
             eval "$_GOTO_EDITOR $_GOTO_ENVS/$1"
@@ -66,8 +66,10 @@ function gt {
         if [ -d $_GOTO_ENVS/$1 ]
         then
             rm -f $_GOTO_ENVS/$1
+        else
+            echo $_ERROR
         fi
-        echo "$(grep -vw "$1" ${_GOTO_PLACES})" > $_GOTO_PLACES
+        echo "$(grep -vw "$1:" ${_GOTO_PLACES})" > $_GOTO_PLACES
     }
 
     function __help {
@@ -92,7 +94,7 @@ AUTHOR
     goTo was made by Paulo Moggi and the source can be found at:
     https://github.com/Moggi/goTo
 
-goTo				08/09/2016				goTo'
+goTo                            09/2016                         goTo'
     }
 
     function __logo {
@@ -105,8 +107,7 @@ _\__, / \____//_/    \____/
 
 Simple way to pre-set up a terminal environment
 
-do `gt help` to see the help
-'
+do `gt help` to see the help'
     }
 
 
