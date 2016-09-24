@@ -16,7 +16,8 @@ if [ "`basename $SHELL`" != "bash" ]
 then
     echo 'Looks like you have other SHELL environment'
     echo 'We are sourcing the goTo script to $HOME/.bashrc'
-    echo 'You may need to write `source $HOME/.bashrc` to your SHELL startup script'
+    echo 'You may need to source `$HOME/.bashrc` to your SHELL startup script'
+    echo ''
 fi
 
 if [ -f gt.sh ]
@@ -27,11 +28,10 @@ then
 
     if [ ! -f $HOME/.bashrc ] || ! grep -q "[ -f ${_GOTO_HOME}/gt.sh ] && source ${_GOTO_HOME}/gt.sh" $HOME/.bashrc
     then
-        echo "source ${_GOTO_HOME}/gt.sh" >> $HOME/.bashrc
+        echo "[ -f ${_GOTO_HOME}/gt.sh ] && source ${_GOTO_HOME}/gt.sh" >> $HOME/.bashrc
     fi
     # Shell script can't source functions
     # Need to source manually
-    echo ''
     echo 'To use now, you need to `source $HOME/.bashrc`'
     echo 'or just initiate a new SHELL instance'
 else

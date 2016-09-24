@@ -7,8 +7,8 @@ function gt {
     _GOTO_EDITOR="nano"
 
     function __cd {
-        _DIR=$(grep -w "$1" $_GOTO_PLACES | cut -d: -f2)
-        if [ -z ${DIR+x} ] && [ -d $_DIR ]
+        _DIR=$(grep "^$1:" $_GOTO_PLACES | cut -d: -f2)
+        if [[ $_DIR ]] && [ -d $_DIR ]
         then
             cd $_DIR
         else
@@ -23,7 +23,8 @@ function gt {
                 eval "$line"
             done < "$_GOTO_ENVS/$1"
         else
-            echo "There is nothing in the GoTo environment file $_GOTO_ENVS/$1"
+            echo "There is nothing in the GoTo environment file"
+            echo "You can edit the environment with 'gt edit $1'"
         fi
     }
 
@@ -33,27 +34,26 @@ function gt {
     }
 
     function __add {
-        if [ "$1" = "ls" ] || [ "$1" = "help" ]
+        if [ "$1" = "ls" ] || [ "$1" = "help" ] || [ "$1" = "." ] || [ "$1" = ".." ]
         then
             echo "There is a command with this name"
             echo "This project name can't be used"
-        elif [ $(grep -w "$1" $_GOTO_PLACES) ]
+        elif [[ $(grep "^$1:" $_GOTO_PLACES) ]]
         then
             echo "gt rm '$1' before anything"
         else
             echo "$1:$2" >> $_GOTO_PLACES
             sort $_GOTO_PLACES -o $_GOTO_PLACES
-            echo "Now you can edit the environment file at $_GOTO_ENVS/$1"
+            echo "You can edit the environment with 'gt edit $1'"
         fi
     }
-
 
     function __edit {
         if [ ! -z ${GOTO_EDITOR+x} ]
         then
             _GOTO_EDITOR=$GOTO_EDITOR
         fi
-		if [ $(grep -w "$1" $_GOTO_PLACES) ]
+		if [[ $(grep "^$1:" $_GOTO_PLACES) ]]
         then
             echo "Editing \"$1\" project env"
             eval "$_GOTO_EDITOR $_GOTO_ENVS/$1"
@@ -63,11 +63,13 @@ function gt {
     }
 
     function __rm {
-        if [ -d $_GOTO_ENVS/$1 ]
+        if [[ $(grep "^$1:" $_GOTO_PLACES) ]]
         then
             rm -f $_GOTO_ENVS/$1
+            echo "$(grep -v "^$1:" ${_GOTO_PLACES})" > $_GOTO_PLACES
+        else
+            echo $_ERROR
         fi
-        echo "$(grep -vw "$1" ${_GOTO_PLACES})" > $_GOTO_PLACES
     }
 
     function __help {
@@ -92,7 +94,11 @@ AUTHOR
     goTo was made by Paulo Moggi and the source can be found at:
     https://github.com/Moggi/goTo
 
+<<<<<<< HEAD
 goTo                        09/2016                     goTo'
+=======
+goTo                            09/2016                         goTo'
+>>>>>>> dev
     }
 
     function __logo {
@@ -105,8 +111,7 @@ _\__, / \____//_/    \____/
 
 Simple way to pre-set up a terminal environment
 
-do `gt help` to see the help
-'
+do `gt help` to see the help'
     }
 
 
