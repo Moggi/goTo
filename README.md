@@ -38,7 +38,7 @@ chmod +x uninstall.sh
 
 ### Where it runs
 - Bash
-- Zsh
+- Zsh (Oh-my-zsh at OSX)
 - Fishshell (not yet tested)
 
 ## How it works
@@ -71,8 +71,11 @@ alias hstop='./giant/path/to/your/project/with/hadoop/projectH/stop-all.sh'
 # so every time you need to put those commands...
 
 # Now you only need to put these guys at a file and call goTo to setup them to you
-echo "alias hstart='./giant/path/../projectH/start-all.sh'" >> $HOME/.goto/evns/projectH
-echo "alias hstop='./giant/path/../projectH/stop-all.sh'" >> $HOME/.goto/evns/projectH
+gt edit projectH
+# It will open the nano editor (you can change this with 'export GOTO_EDITOR="you_editor"')
+# write your ONE_LINE command (must be a command in one line)
+alias hstart='./giant/path/../projectH/start-all.sh'
+alias hstop='./giant/path/../projectH/stop-all.sh'
 # Simply call goTo and you're good to go
 gt up projectH
 ```
