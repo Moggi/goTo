@@ -17,6 +17,7 @@ then
     echo 'Looks like you have other SHELL environment'
     echo 'We are sourcing the goTo script to $HOME/.bashrc'
     echo 'You may need to source `$HOME/.bashrc` to your SHELL startup script'
+    echo ''
 fi
 
 if [ -f gt.sh ]
@@ -31,7 +32,6 @@ then
     fi
     # Shell script can't source functions
     # Need to source manually
-    echo ''
     echo 'To use now, you need to `source $HOME/.bashrc`'
     echo 'or just initiate a new SHELL instance'
 else

@@ -9,5 +9,5 @@ fi
 
 if [ -f $HOME/.bashrc ]
 then
-    echo "$(grep -vw "source ${_GOTO_HOME}/gt.sh" ${HOME}/.bashrc)" > $HOME/.bashrc
+    echo "$(grep -v "[ -f ${_GOTO_HOME}/gt.sh ] && source ${_GOTO_HOME}/gt.sh" ${HOME}/.bashrc)" > $HOME/.bashrc
 fi

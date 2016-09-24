@@ -7,7 +7,7 @@ function gt {
     _GOTO_EDITOR="nano"
 
     function __cd {
-        _DIR=$(grep -w "$1:" $_GOTO_PLACES | cut -d: -f2)
+        _DIR=$(grep "^$1:" $_GOTO_PLACES | cut -d: -f2)
         if [[ $_DIR ]] && [ -d $_DIR ]
         then
             cd $_DIR
@@ -24,7 +24,7 @@ function gt {
             done < "$_GOTO_ENVS/$1"
         else
             echo "There is nothing in the GoTo environment file"
-            echo "You can edit the environment with `gt edit $1`"
+            echo "You can edit the environment with 'gt edit $1'"
         fi
     }
 
@@ -34,18 +34,17 @@ function gt {
     }
 
     function __add {
-        _PROJECT=$(grep -w "$1:" $_GOTO_PLACES | cut -d: -f1)
         if [ "$1" = "ls" ] || [ "$1" = "help" ] || [ "$1" = "." ] || [ "$1" = ".." ]
         then
             echo "There is a command with this name"
             echo "This project name can't be used"
-        elif [[ $_PROJECT ]]
+        elif [[ $(grep "^$1:" $_GOTO_PLACES) ]]
         then
             echo "gt rm '$1' before anything"
         else
             echo "$1:$2" >> $_GOTO_PLACES
             sort $_GOTO_PLACES -o $_GOTO_PLACES
-            echo "You can edit the environment with `gt edit $1`"
+            echo "You can edit the environment with 'gt edit $1'"
         fi
     }
 
@@ -54,7 +53,7 @@ function gt {
         then
             _GOTO_EDITOR=$GOTO_EDITOR
         fi
-		if [ $(grep -w "$1:" $_GOTO_PLACES) ]
+		if [[ $(grep "^$1:" $_GOTO_PLACES) ]]
         then
             echo "Editing \"$1\" project env"
             eval "$_GOTO_EDITOR $_GOTO_ENVS/$1"
@@ -64,11 +63,10 @@ function gt {
     }
 
     function __rm {
-        _PROJECT=$(grep -w "$1:" $_GOTO_PLACES | cut -d: -f1)
-        if [[ $_PROJECT ]]
+        if [[ $(grep "^$1:" $_GOTO_PLACES) ]]
         then
             rm -f $_GOTO_ENVS/$1
-            echo "$(grep -vw "$1:" ${_GOTO_PLACES})" > $_GOTO_PLACES
+            echo "$(grep -v "^$1:" ${_GOTO_PLACES})" > $_GOTO_PLACES
         else
             echo $_ERROR
         fi
