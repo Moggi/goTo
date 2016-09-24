@@ -23,7 +23,8 @@ function gt {
                 eval "$line"
             done < "$_GOTO_ENVS/$1"
         else
-            echo "There is nothing in the GoTo environment file $_GOTO_ENVS/$1"
+            echo "There is nothing in the GoTo environment file"
+            echo "You can edit the environment with `gt edit $1`"
         fi
     }
 
@@ -34,7 +35,7 @@ function gt {
 
     function __add {
         _PROJECT=$(grep -w "$1:" $_GOTO_PLACES | cut -d: -f1)
-        if [ "$1" = "ls" ] || [ "$1" = "help" ]
+        if [ "$1" = "ls" ] || [ "$1" = "help" ] || [ "$1" = "." ] || [ "$1" = ".." ]
         then
             echo "There is a command with this name"
             echo "This project name can't be used"
@@ -44,7 +45,7 @@ function gt {
         else
             echo "$1:$2" >> $_GOTO_PLACES
             sort $_GOTO_PLACES -o $_GOTO_PLACES
-            echo "Now you can edit the environment file at $_GOTO_ENVS/$1"
+            echo "You can edit the environment with `gt edit $1`"
         fi
     }
 
