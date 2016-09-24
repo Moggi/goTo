@@ -63,7 +63,8 @@ function gt {
     }
 
     function __rm {
-        if [ -d $_GOTO_ENVS/$1 ]
+        _PROJECT=$(grep -w "$1:" $_GOTO_PLACES | cut -d: -f1)
+        if [[ $_PROJECT ]]
         then
             rm -f $_GOTO_ENVS/$1
             echo "$(grep -vw "$1:" ${_GOTO_PLACES})" > $_GOTO_PLACES
