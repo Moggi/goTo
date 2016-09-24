@@ -66,10 +66,10 @@ function gt {
         if [ -d $_GOTO_ENVS/$1 ]
         then
             rm -f $_GOTO_ENVS/$1
+            echo "$(grep -vw "$1:" ${_GOTO_PLACES})" > $_GOTO_PLACES
         else
             echo $_ERROR
         fi
-        echo "$(grep -vw "$1:" ${_GOTO_PLACES})" > $_GOTO_PLACES
     }
 
     function __help {
