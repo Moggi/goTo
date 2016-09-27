@@ -19,7 +19,6 @@ Simple way to pre-set up a terminal environment
 
  chmod +x install.sh
  ./install.sh
- # You need to `source $HOME/.bash_profile` or just use a new Shell instance
  ```
 
 2. Do 'gt help' to see the mini manual
@@ -38,8 +37,7 @@ chmod +x uninstall.sh
 
 ### Where it runs
 - Bash
-- Zsh (Oh-my-zsh at OSX)
-- Fishshell (not yet tested)
+- Zsh
 
 ## How it works
 
@@ -74,8 +72,8 @@ alias hstop='./giant/path/to/your/project/with/hadoop/projectH/stop-all.sh'
 gt edit projectH
 # It will open the nano editor (you can change this with 'export GOTO_EDITOR="you_editor"')
 # write your ONE_LINE command (must be a command in one line)
-alias hstart='./giant/path/../projectH/start-all.sh'
-alias hstop='./giant/path/../projectH/stop-all.sh'
+ alias hstart='./giant/path/../projectH/start-all.sh'
+ alias hstop='./giant/path/../projectH/stop-all.sh'
 # Simply call goTo and you're good to go
 gt up projectH
 ```
