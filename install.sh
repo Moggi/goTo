@@ -25,12 +25,12 @@ fi
 
 if [ -f gt.sh ]
 then
-    [ ! -d $_GOTO_HOME/envs ] && mkdir -p "$_GOTO_HOME/envs"
+    [ ! -d "$_GOTO_HOME/envs" ] && mkdir -p "$_GOTO_HOME/envs"
 	cp -f gt.sh $_GOTO_HOME/gt.sh
     [ ! -f "$_GOTO_HOME/places" ] && touch "$_GOTO_HOME/places"
 
-    _command="[[ -r $_GOTO_HOME/gt.sh ]] && source $_GOTO_HOME/gt.sh"
-    if [ ! -f $HOME/$startup ] || ! grep -q "$_command" $HOME/$startup
+    _command="\n[[ -r $_GOTO_HOME/gt.sh ]] && source $_GOTO_HOME/gt.sh\n"
+    if [ ! -f "$HOME/$startup" ] || ! grep -q "$_command" $HOME/$startup
     then
         echo "$_command" >> $HOME/$startup
     fi
