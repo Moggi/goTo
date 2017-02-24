@@ -60,7 +60,7 @@ gt projectX
 
 ### Predefined environments
 Another feature is the possibility to use goTo to setup a environment with a simple file with your commands  
-NOTE: goTo will read line by line executing with `eval`, so your command needs to be in one line
+**IMPORTANT**: goTo will read line by line executing with `eval`, so your command needs to be in one line
 ```sh
 # lets say every time you will work on a Hadoop project, you need to make two alias
 alias hstart='./giant/path/to/your/project/with/hadoop/projectH/start-all.sh'
@@ -71,7 +71,7 @@ alias hstop='./giant/path/to/your/project/with/hadoop/projectH/stop-all.sh'
 # Now you only need to put these guys at a file and call goTo to setup them to you
 gt edit projectH
 # It will open the nano editor (you can change this with 'export GOTO_EDITOR="you_editor"')
-# write your ONE_LINE command (must be a command in one line)
+# write your ONE LINE COMMAND (must be a command in one line)
  alias hstart='./giant/path/../projectH/start-all.sh'
  alias hstop='./giant/path/../projectH/stop-all.sh'
 # Simply call goTo and you're good to go
