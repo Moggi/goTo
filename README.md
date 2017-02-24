@@ -21,7 +21,7 @@ Simple way to pre-set up a terminal environment
  ./install.sh
  ```
 
-2. Do 'gt help' to see the mini manual
+2. Do `gt help` to see the mini manual
  ```sh
  # do gt help to see the help
  gt help
@@ -44,7 +44,7 @@ chmod +x uninstall.sh
 __goTo__ operates over the current user shell so the user can change the directory, source files and export variables to current environment. To do this job, goTo needs to be a function and not a script ([Stackoverflow Thread](http://stackoverflow.com/a/1464266))
 
 ### Changing directories
-With __goTo__ you can easily cd to a project by typing `gt <project_name>`. Example:
+With __goTo__ you can easily `cd` to a project by typing `gt <project_name>`. Example:
 ```sh
 # lets say you are at $HOME
 cd ~
