@@ -21,7 +21,7 @@ Simple way to pre-set up a terminal environment
  ./install.sh
  ```
 
-2. Do 'gt help' to see the mini manual
+2. Do `gt help` to see the mini manual
  ```sh
  # do gt help to see the help
  gt help
@@ -44,13 +44,13 @@ chmod +x uninstall.sh
 __goTo__ operates over the current user shell so the user can change the directory, source files and export variables to current environment. To do this job, goTo needs to be a function and not a script ([Stackoverflow Thread](http://stackoverflow.com/a/1464266))
 
 ### Changing directories
-With __goTo__ you can easily cd to a project by typing `gt <project_name>`. Example:
+With __goTo__ you can easily `cd` to a project by typing `gt <project_name>`. Example:
 ```sh
 # lets say you are at $HOME
 cd ~
 # and you have a POV-Ray project at $HOME/Code/povray
 gt add povray $HOME/Code/povray
-# now you can just go there with
+# now you can go there with
 gt povray
 
 # Now let's say you need to cd to a project at /usr/local/share/projectX/
@@ -60,7 +60,9 @@ gt projectX
 
 ### Predefined environments
 Another feature is the possibility to use goTo to setup a environment with a simple file with your commands  
-NOTE: goTo will read line by line executing with `eval`, so your command needs to be in one line
+**IMPORTANT**: goTo will read line by line executing with `eval`, so your command needs to be in one line!
+
+Example:
 ```sh
 # lets say every time you will work on a Hadoop project, you need to make two alias
 alias hstart='./giant/path/to/your/project/with/hadoop/projectH/start-all.sh'
@@ -71,7 +73,7 @@ alias hstop='./giant/path/to/your/project/with/hadoop/projectH/stop-all.sh'
 # Now you only need to put these guys at a file and call goTo to setup them to you
 gt edit projectH
 # It will open the nano editor (you can change this with 'export GOTO_EDITOR="you_editor"')
-# write your ONE_LINE command (must be a command in one line)
+# write your ONE LINE COMMAND (must be a command in one line)
  alias hstart='./giant/path/../projectH/start-all.sh'
  alias hstop='./giant/path/../projectH/stop-all.sh'
 # Simply call goTo and you're good to go

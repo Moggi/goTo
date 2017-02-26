@@ -1,6 +1,6 @@
 # !/usr/bin/bash
 
-_GOTO_HOME="${HOME}/.goto"
+_GOTO_HOME="$HOME/.goto"
 
 echo '              ________
 _______ _________  __/_____
@@ -12,27 +12,29 @@ _\__, / \____//_/    \____/
 Simple way to pre-set up a terminal environment
 '
 
-if [ "`basename $SHELL`" != "bash" ]
+if [ "`basename $SHELL`" = "bash" ]
 then
-    echo 'Looks like you have other SHELL environment'
-    echo 'We are sourcing the goTo script to $HOME/.bashrc'
-    echo 'You may need to source `$HOME/.bashrc` to your SHELL startup script'
-    echo ''
+    startup='.bashrc'
+elif [ "`basename $SHELL`" = "zsh" ]
+then
+    startup='.zshrc'
+else
+    echo 'No compatible SHELL. Must be Zsh or Bash'
+    exit 1
 fi
 
 if [ -f gt.sh ]
 then
-    [ ! -d $_GOTO_HOME/envs ] && mkdir -p $_GOTO_HOME/envs
+    [ ! -d "$_GOTO_HOME/envs" ] && mkdir -p "$_GOTO_HOME/envs"
 	cp -f gt.sh $_GOTO_HOME/gt.sh
-    [ ! -f $_GOTO_HOME/places ] && touch $_GOTO_HOME/places
+    [ ! -f "$_GOTO_HOME/places" ] && touch "$_GOTO_HOME/places"
 
-    if [ ! -f $HOME/.bashrc ] || ! grep -q "[ -f ${_GOTO_HOME}/gt.sh ] && source ${_GOTO_HOME}/gt.sh" $HOME/.bashrc
+    _command="\n[[ -r $_GOTO_HOME/gt.sh ]] && source $_GOTO_HOME/gt.sh\n"
+    if [ ! -f "$HOME/$startup" ] || ! grep -q "$_command" $HOME/$startup
     then
-        echo "[ -f ${_GOTO_HOME}/gt.sh ] && source ${_GOTO_HOME}/gt.sh" >> $HOME/.bashrc
+        echo "$_command" >> $HOME/$startup
     fi
-    # Shell script can't source functions
-    # Need to source manually
-    echo 'To use now, you need to `source $HOME/.bashrc`'
+    echo "To use now, you need to \`source \$HOME/$startup\`"
     echo 'or just initiate a new SHELL instance'
 else
 	echo 'No GOTO files found. [gt.sh]'
