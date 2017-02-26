@@ -50,7 +50,7 @@ With __goTo__ you can easily `cd` to a project by typing `gt <project_name>`. Ex
 cd ~
 # and you have a POV-Ray project at $HOME/Code/povray
 gt add povray $HOME/Code/povray
-# now you can just go there with
+# now you can go there with
 gt povray
 
 # Now let's say you need to cd to a project at /usr/local/share/projectX/
@@ -60,7 +60,9 @@ gt projectX
 
 ### Predefined environments
 Another feature is the possibility to use goTo to setup a environment with a simple file with your commands  
-**IMPORTANT**: goTo will read line by line executing with `eval`, so your command needs to be in one line
+**IMPORTANT**: goTo will read line by line executing with `eval`, so your command needs to be in one line!
+
+Example:
 ```sh
 # lets say every time you will work on a Hadoop project, you need to make two alias
 alias hstart='./giant/path/to/your/project/with/hadoop/projectH/start-all.sh'
