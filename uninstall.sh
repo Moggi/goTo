@@ -1,13 +1,19 @@
-# !/usr/bin/bash
+# !/bin/bash
 
-_GOTO_HOME="${HOME}/.goto"
+_GOTO_HOME="$HOME/.goto"
+_command="[[ -r \$HOME/.goto/gt.sh ]] && source \$HOME/.goto/gt.sh"
 
 if [ -d $_GOTO_HOME ]
 then
     rm -rf $_GOTO_HOME
 fi
 
-if [ -f $HOME/.bashrc ]
-then
-    echo "$(grep -v "[ -f ${_GOTO_HOME}/gt.sh ] && source ${_GOTO_HOME}/gt.sh" ${HOME}/.bashrc)" > $HOME/.bashrc
+if [ -w $HOME/.bashrc ]; then
+    # printf "%s\n" "$(grep -v $_command ${HOME}/.bashrc)" > $HOME/.bashrc
+    printf "%s\n" "$(grep -v $_command ${HOME}/.bashrc)"
+fi
+
+if [ -w $HOME/.zshrc ]; then
+    # printf "%s\n" "$(grep -v $_command ${HOME}/.zshrc)" > $HOME/.zshrc
+    printf "%s\n" "$(grep -v $_command ${HOME}/.zshrc)"
 fi

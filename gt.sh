@@ -110,6 +110,9 @@ Simple way to pre-set up a terminal environment
 do `gt help` to see the help'
     }
 
+    function __not_valid {
+        printf "%s\n" "goTo: Not a valid command"
+    }
 
     if [ ! -d "$HOME/.goto/" ]
     then
@@ -120,40 +123,54 @@ do `gt help` to see the help'
         return 1
     fi
 
-    if (( $# == 0 ))
-    then
-        __logo
-    elif (( $# == 1 ))
-    then
-        if [ $1 = "ls" ]
-        then
-            __ls
-        elif [ $1 = "help" ]
-        then
-            __help
-        else
-            __cd $1
-        fi
-    elif (( $# == 2 ))
-    then
-        if [ $1 = "up" ]
-        then
-            __eval $2
-        elif [ $1 = "rm" ]
-        then
-            __rm $2
 
-        elif [ $1 = "edit" ]
-        then
-            __edit $2
-        fi
-    elif (( $# == 3 ))
-    then
-        if [ $1 = "add" ]
-        then
-            __add $2 $3
-        fi
-    fi
+    case $# in
+        0)
+            __logo
+            ;;
+        1)
+            case $1 in
+                'ls')
+                    __ls
+                    ;;
+                'help')
+                    __help
+                    ;;
+                *)
+                    __cd $1
+                    ;;
+            esac
+            ;;
+        2)
+            case $1 in
+                'up')
+                    __eval $2
+                    ;;
+                'rm')
+                    __rm $2
+                    ;;
+                'edit')
+                    __edit $2
+                    ;;
+                *)
+                    __not_valid
+                    ;;
+            esac
+            ;;
+        3)
+        case $1 in
+            'add')
+                __add $2 $3
+                ;;
+            *)
+                __not_valid
+                ;;
+            esac
+            ;;
+        *)
+            __not_valid
+        ;;
+    esac
 
     return 0
 }
